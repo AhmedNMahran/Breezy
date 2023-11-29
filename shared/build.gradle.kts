@@ -37,6 +37,7 @@ kotlin {
                 implementation(compose.material3)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation(libs.ktor.client.core)
 
             }
         }
