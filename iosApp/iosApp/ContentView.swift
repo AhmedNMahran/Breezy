@@ -16,3 +16,9 @@ struct ContentView: View {
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
     }
 }
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
