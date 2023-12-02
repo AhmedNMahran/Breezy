@@ -12,22 +12,37 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ahmednmahran.breezy.api.WeatherViewModel
 
-
+val weatherViewModel = WeatherViewModel()
 @Composable
 fun App() {
+
     BreezyTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            WeatherView(WeatherUIModel(Unit.CELSIUS, "23", "Cairo"))
+
+            var text by remember { mutableStateOf("Loading") }
+            val uiState: WeatherUIModel by weatherViewModel.uiState.collectAsState()
+            LaunchedEffect(weatherViewModel) {
+                weatherViewModel.getWeather()
+            }
+            WeatherView(uiState)
+            println("state: $text")
         }
     }
 }
