@@ -46,7 +46,7 @@ class WeatherViewModel {
     ) {
         CoroutineScope(Dispatchers.IO).launch {
             val response = getWeatherResponse(
-                "$BASE_URL?latitude=$latitude&longitude=$longitude&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min&timezone=Africa%2FCairo&forecast_days=$forecastDays"
+                "$BASE_URL?latitude=$latitude&longitude=$longitude&current=temperature_2m,is_day&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min&timezone=Africa%2FCairo&forecast_days=$forecastDays"
             )
             _uiState.update {
                 with(response.asUIModel()) {
@@ -77,8 +77,8 @@ class WeatherViewModel {
 fun WeatherResponse.asUIModel(): WeatherUIModel {
     return WeatherUIModel(
         unit =
-        this.daily_units.temperature_2m_max.toUnit(),
-        temperature = this.daily.toString(),
+        this.current_units.temperature_2m.toUnit(),
+        temperature = this.current.temperature_2m.toString(),
         city = "Gaza", hourlyForecast = kotlin.run {
             hourly.temperature_2m.mapIndexed { index, it ->
                 HourlyForecast(it.toString(), hourly.time[index])

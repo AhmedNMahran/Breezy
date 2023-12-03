@@ -14,5 +14,7 @@ data class WeatherResponse(
     val hourly_units: HourlyUnits,
     val hourly: Hourly,
     val daily_units: DailyUnits,
+    val current: Current,
+    val current_units: CurrentUnits,
     val daily: Daily
 )
