@@ -1,4 +1,4 @@
-package com.ahmednmahran.breezy
+package com.ahmednmahran.breezy.ui
 
 import kotlinx.serialization.Serializable
 
