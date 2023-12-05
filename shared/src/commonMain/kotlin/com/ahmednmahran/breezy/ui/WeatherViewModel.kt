@@ -40,8 +40,8 @@ class WeatherViewModel {
 
 
     suspend fun getWeather(
-        latitude: Double = 34.4667,
-        longitude: Double = 31.5016,
+        latitude: Double = 31.5016,
+        longitude: Double = 34.4667,
         forecastDays: Int = 1
     ) {
         _uiState.update { WeatherUiState.Loading }
