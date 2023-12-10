@@ -5,4 +5,4 @@ You can find the related series on medium [here](https://ahmednmahran.medium.com
 
 **Please star this repo and follow me here and on medium so that you can get notified about new content**
 
-you can find all my social links [here](https://youtube.com/AhmedNMahran/about)
+you can find all my social links [here](https://linktr.ee/AhmedNMahran)
