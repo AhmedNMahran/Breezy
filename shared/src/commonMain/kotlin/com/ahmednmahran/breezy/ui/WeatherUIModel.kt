@@ -1,5 +1,7 @@
 package com.ahmednmahran.breezy.ui
 
+import com.ahmednmahran.breezy.model.WeatherCode
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -11,8 +13,19 @@ data class WeatherUIModel(
     val dailyForecast: List<DailyForecast>,
 )
 
-@Serializable data class HourlyForecast(val temperature: String, val time: String)
-@Serializable data class DailyForecast(val high: String, val low: String, val unit: Unit)
+@Serializable
+data class HourlyForecast(
+    val temperature: String, val time: String,
+    @SerialName("weather_code") val weatherCode: Int = 0
+)
+
+@Serializable
+data class DailyForecast(
+    val high: String,
+    val low: String,
+    val unit: Unit,
+    @SerialName("weather_code") val weatherCode: Int = 0
+)
 
 enum class Unit(val symbol: String) {
     CELSIUS("°C"), FAHRENHEIT("°F")

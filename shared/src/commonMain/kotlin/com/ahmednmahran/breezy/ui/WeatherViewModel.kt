@@ -18,6 +18,31 @@ import kotlinx.coroutines.withContext
 
 
 private const val BASE_URL = "https://api.open-meteo.com/v1/forecast"
+private const val WEATHER_CODE = "weather_code"
+private const val HOURLY = "hourly"
+private const val DAILY = "daily"
+private const val CURRENT = "current"
+
+private const val LAT = "latitude"
+
+private const val LNG = "longitude"
+
+private const val TEMP = "temperature_2m"
+
+private const val TEMP_MAX = "temperature_2m_max"
+private const val TEMP_MIN = "temperature_2m_min"
+
+private const val DAYS = "forecast_days"
+
+private const val ZONE = "timezone"
+
+private const val IS_DAY = "is_day"
+
+private const val ZONE_VALUE = "Africa%2FCairo"
+private const val CURRENT_CALL = "$CURRENT=$TEMP,$IS_DAY,$WEATHER_CODE"
+private const val HOURLY_CALL = "$HOURLY=$TEMP,$WEATHER_CODE"
+private const val DAILY_CALL = "$DAILY=$TEMP_MAX,$TEMP_MIN,$WEATHER_CODE"
+
 
 class WeatherViewModel {
     private val _uiState: MutableStateFlow<WeatherUiState> = MutableStateFlow(
@@ -63,6 +88,7 @@ class WeatherViewModel {
             withContext(Dispatchers.Main) {
                 // update with error state
                 _uiState.update {
+                    println("WeatherError: "+error.message)
                     WeatherUiState.Error(error)
                 }
             }
@@ -88,7 +114,7 @@ class WeatherViewModel {
         longitude: Double,
         forecastDays: Int
     ) =
-        "$BASE_URL?latitude=$latitude&longitude=$longitude&current=temperature_2m,is_day&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min&timezone=Africa%2FCairo&forecast_days=$forecastDays"
+        "$BASE_URL?$LAT=$latitude&$LNG=$longitude&$CURRENT_CALL&$HOURLY_CALL&$DAILY_CALL&$ZONE=$ZONE_VALUE&$DAYS=$forecastDays"
 
     /**
      * replicate the lifecycle of the view model
