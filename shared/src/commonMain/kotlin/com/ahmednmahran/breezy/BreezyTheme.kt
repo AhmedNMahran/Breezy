@@ -28,7 +28,7 @@ fun BreezyTheme(
         )
     } else {
         lightColorScheme(
-            primary = Color(0xFF6200EE),
+            primary = Color(17345),
             secondary = Color(0xFF03DAC5),
             tertiary = Color(0xFF3700B3)
         )
@@ -53,3 +53,7 @@ fun BreezyTheme(
         content = content
     )
 }
+val titleStyle = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = 54.sp,
+)

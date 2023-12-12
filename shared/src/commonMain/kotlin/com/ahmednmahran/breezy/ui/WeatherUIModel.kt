@@ -11,6 +11,7 @@ data class WeatherUIModel(
     val city: String,
     val hourlyForecast: List<HourlyForecast>,
     val dailyForecast: List<DailyForecast>,
+    val weatherCode: Int = WeatherCode.CLEAR_SKY.code
 )
 
 @Serializable
