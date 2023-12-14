@@ -36,6 +36,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.ui)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
                 implementation(libs.ktor.client.core)
@@ -70,4 +71,5 @@ android {
     defaultConfig {
         minSdk = 24
     }
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }

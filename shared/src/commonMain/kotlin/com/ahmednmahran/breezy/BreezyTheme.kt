@@ -53,7 +53,30 @@ fun BreezyTheme(
         content = content
     )
 }
+
 val titleStyle = TextStyle(
     fontWeight = FontWeight.Bold,
     fontSize = 54.sp,
 )
+
+fun appBackgroundColors(darkTheme: Boolean = false): List<Color> {
+    return if (darkTheme) {
+        listOf(
+            Color(0xFF5C6BC0),
+            Color(0xFF3F51B5),
+            Color(0xFF3949AB),
+            Color(0xFF303F9F),
+            Color(0xFF283593),
+            Color(0xFF1A237E)
+        )
+    } else {
+        listOf(
+            Color(0xFF29B6F6),
+            Color(0xFF03A9F4),
+            Color(0xFF039BE5),
+            Color(0xFF0288D1),
+            Color(0xFF0277BD),
+            Color(0xFF01579B)
+        )
+    }
+}

@@ -1,6 +1,7 @@
 package com.ahmednmahran.breezy.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,12 +23,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ahmednmahran.breezy.appBackgroundColors
 import com.ahmednmahran.breezy.model.WeatherCode.CLEAR_SKY
 import com.ahmednmahran.breezy.model.WeatherCode.FOG_AND_DEPOSITING_RIME_FOG
 import com.ahmednmahran.breezy.model.WeatherCode.FREEZING_RAIN_HEAVY
@@ -66,14 +67,7 @@ fun WeatherView(model: WeatherUIModel) {
     Box {
         Column(
             modifier = Modifier
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            MaterialTheme.colorScheme.background,
-                            Color.Blue,
-                        ),
-                    ), alpha = (0.5f)
-                ).padding(16.dp)
+                .padding(16.dp)
                  // padding around the column
                 .fillMaxSize(), // fill the available space
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -118,10 +112,7 @@ fun HourlyForecastView(model: HourlyForecast) {
         Column(
             Modifier.background(
                 brush = Brush.linearGradient(
-                    colors = listOf(
-                        MaterialTheme.colorScheme.background,
-                        Color.Blue,
-                    ),
+                    colors = appBackgroundColors(isSystemInDarkTheme()),
                 ), alpha = (0.5f)
             ).padding(16.dp),
             verticalArrangement = Arrangement.SpaceEvenly,
