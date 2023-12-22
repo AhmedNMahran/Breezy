@@ -11,13 +11,13 @@ data class WeatherUIModel(
     val city: String,
     val hourlyForecast: List<HourlyForecast>,
     val dailyForecast: List<DailyForecast>,
-    val weatherCode: Int = WeatherCode.CLEAR_SKY.code
+    val weatherCode: WeatherCode = WeatherCode.CLEAR_SKY_DAY
 )
 
 @Serializable
 data class HourlyForecast(
     val temperature: String, val time: String,
-    @SerialName("weather_code") val weatherCode: Int = 0
+    @SerialName("weather_code") val weatherCode: WeatherCode = WeatherCode.CLEAR_SKY_DAY
 )
 
 @Serializable
@@ -25,7 +25,7 @@ data class DailyForecast(
     val high: String,
     val low: String,
     val unit: Unit,
-    @SerialName("weather_code") val weatherCode: Int = 0
+    @SerialName("weather_code") val weatherCode: WeatherCode = WeatherCode.CLEAR_SKY_DAY
 )
 
 enum class Unit(val symbol: String) {

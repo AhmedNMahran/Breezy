@@ -8,7 +8,6 @@ compose-material3 = "1.1.2"
 androidx-activityCompose = "1.8.0"
 ktor = "2.3.6"
 coroutines = "1.7.3"
-composeIcons = "1.1.0"
 
 
 [libraries]
@@ -28,8 +27,6 @@ ktor-serialization-kotlinx-json = { module= "io.ktor:ktor-serialization-kotlinx-
 # coroutins
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-# icons
-composeIcons-weatherIcons = { module = "br.com.devsrsouza.compose.icons:erikflowers-weather-icons", version.ref = "composeIcons" }
 
 
 [plugins]
