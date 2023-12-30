@@ -19,7 +19,7 @@ fun WeatherResponse.asUIModel(): WeatherUIModel {
                 HourlyForecast(it.roundToInt().toString(), hourly.time[index],
                     weatherCode = getWeatherCode(
                         hourly.weatherCodes?.get(index) ?: 0,
-                        if (index < 12) 0 else 1 // first 12 hours is night, rest is day
+                        if (isDay(index)) 1 else 0
                     )
                 )
             }
@@ -43,6 +43,16 @@ fun WeatherResponse.asUIModel(): WeatherUIModel {
     }
 
 }
+
+/**
+ * use the remainder operator to divide the hour index by 12
+ * and check if the remainder is less than 6.
+ * If the remainder is less than 6, then it is day. Otherwise, it is night
+ */
+fun isDay(hourIndex: Int): Boolean {
+    return hourIndex % 12 < 6
+}
+
 
 private fun getWeatherCode(code: Int, isDay: Int) = WeatherCode.entries
     .find {
