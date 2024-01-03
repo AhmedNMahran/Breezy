@@ -1,4 +1,5 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -18,7 +19,9 @@ kotlin {
             }
         }
     }
-    
+
+    jvm("desktop")
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,12 +33,15 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
+
         val commonMain by getting {
             dependencies {
                 //put your multiplatform dependencies here
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.ui)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
                 implementation(libs.ktor.client.core)
@@ -60,6 +66,12 @@ kotlin {
                 implementation(libs.kotlin.test)
             }
         }
+
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.kotlinx.coroutines.android)
+        }
     }
 }
 
@@ -70,4 +82,16 @@ android {
         minSdk = 24
     }
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+}
+
+compose.desktop {
+    application {
+        mainClass = "MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "com.ahmednmahran.breezy"
+            packageVersion = "1.0.0"
+        }
+    }
 }
