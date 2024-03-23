@@ -1,4 +1,4 @@
-package com.ahmednmahran.breezy.android
+package com.ahmednmahran.breezy
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MyApplicationTheme(
+fun BreezyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> kotlin.Unit
 ) {
     val colors = if (darkTheme) {
         darkColorScheme(
@@ -28,7 +28,7 @@ fun MyApplicationTheme(
         )
     } else {
         lightColorScheme(
-            primary = Color(0xFF6200EE),
+            primary = Color(17345),
             secondary = Color(0xFF03DAC5),
             tertiary = Color(0xFF3700B3)
         )
@@ -52,4 +52,31 @@ fun MyApplicationTheme(
         shapes = shapes,
         content = content
     )
+}
+
+val titleStyle = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = 54.sp,
+)
+
+fun appBackgroundColors(darkTheme: Boolean = false): List<Color> {
+    return if (darkTheme) {
+        listOf(
+            Color(0xFF5C6BC0),
+            Color(0xFF3F51B5),
+            Color(0xFF3949AB),
+            Color(0xFF303F9F),
+            Color(0xFF283593),
+            Color(0xFF1A237E)
+        )
+    } else {
+        listOf(
+            Color(0xFF29B6F6),
+            Color(0xFF03A9F4),
+            Color(0xFF039BE5),
+            Color(0xFF0288D1),
+            Color(0xFF0277BD),
+            Color(0xFF01579B)
+        )
+    }
 }
